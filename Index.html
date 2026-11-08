@@ -1,0 +1,978 @@
+```html
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RankRise UK | Premier SEO & Digital Growth Agency</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Case Study Graphs -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B0F19',
+                            card: '#151D30',
+                            border: '#2A3654',
+                            indigo: '#6366F1',
+                            cyan: '#38BDF8',
+                            glow: 'rgba(99, 102, 241, 0.15)',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px -10px rgba(99, 102, 241, 0.3);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38BDF8 0%, #6366F1 50%, #A855F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .glass-card {
+            background: rgba(21, 29, 48, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A3654;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6366F1;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-indigo selection:text-white overflow-x-hidden">
+
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-brand-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-indigo to-brand-cyan flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-indigo-500/30">
+                        <i class="fa-solid font-bold fa-chart-line"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold tracking-tight text-white">RankRise<span class="text-brand-cyan">.uk</span></span>
+                        <span class="block text-[10px] text-gray-400 font-semibold tracking-wider uppercase">UK SEO & Digital Agency</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Nav Links -->
+                <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <a href="#services" class="text-gray-300 hover:text-brand-cyan transition-colors">Services</a>
+                    <a href="#audit" class="text-gray-300 hover:text-brand-cyan transition-colors">Live Audit Tool</a>
+                    <a href="#case-studies" class="text-gray-300 hover:text-brand-cyan transition-colors">Results</a>
+                    <a href="#pricing" class="text-gray-300 hover:text-brand-cyan transition-colors">UK Pricing</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-brand-cyan transition-colors">Reviews</a>
+                </div>
+
+                <!-- Header CTA Button -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <a href="#audit" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-gradient-to-r from-brand-indigo to-brand-cyan text-white shadow-md hover:shadow-brand-indigo/50 hover:scale-105 transition-all duration-200">
+                        Free Audit <i class="fa-solid fa-arrow-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-400 hover:text-white focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden glass-card border-b border-brand-border px-4 pt-2 pb-6 space-y-3">
+            <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-cyan hover:bg-brand-card">Services</a>
+            <a href="#audit" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-cyan hover:bg-brand-card">Live Audit Tool</a>
+            <a href="#case-studies" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-cyan hover:bg-brand-card">Results</a>
+            <a href="#pricing" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-cyan hover:bg-brand-card">UK Pricing</a>
+            <a href="#reviews" class="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-brand-cyan hover:bg-brand-card">Reviews</a>
+            <a href="#audit" class="block text-center w-full px-5 py-3 rounded-xl text-base font-semibold bg-gradient-to-r from-brand-indigo to-brand-cyan text-white shadow-md">
+                Get Free SEO Audit
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <!-- Background Ambient Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-indigo/20 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 right-10 w-[300px] h-[300px] bg-brand-cyan/15 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <!-- UK Trust Badge -->
+                <div class="inline-flex items-center space-x-2 px-4 py-2 rounded-full glass-card border border-brand-indigo/30 text-xs font-semibold text-brand-cyan mb-6">
+                    <span class="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+                    <span>🇬🇧 #1 Data-Driven SEO Agency for UK Businesses</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15] mb-6">
+                    Dominate UK Google Searches & <span class="gradient-text">Multiply Organic Revenue</span>
+                </h1>
+                
+                <p class="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8">
+                    We help ambitious businesses across London, Manchester, Birmingham, and the UK outrank competitors with precision technical SEO, high-authority UK backlinks, and ROI-focused content strategy.
+                </p>
+
+                <!-- Hero CTA Buttons -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+                    <a href="#audit" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-white bg-gradient-to-r from-brand-indigo to-brand-cyan hover:shadow-lg hover:shadow-brand-indigo/40 hover:-translate-y-0.5 transition-all text-center">
+                        <i class="fa-solid fa-magnifying-glass-chart mr-2"></i> Get Free Instant Audit
+                    </a>
+                    <a href="#pricing" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold text-gray-200 glass-card hover:bg-brand-card hover:border-brand-indigo/40 transition-all text-center">
+                        View Transparent Pricing (£)
+                    </a>
+                </div>
+
+                <!-- Micro Proof / Guarantees -->
+                <div class="flex flex-wrap justify-center items-center gap-6 text-xs font-medium text-gray-400">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check-circle text-emerald-400 text-sm"></i>
+                        <span>No Long 12-Month Locks</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check-circle text-emerald-400 text-sm"></i>
+                        <span>Strict White-Hat UK PR Backlinks</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-check-circle text-emerald-400 text-sm"></i>
+                        <span>Monthly Transparent Reporting</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+                <div class="glass-card p-6 rounded-2xl text-center border-t-2 border-t-brand-cyan/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 tracking-tight" id="stat-1">98.4%</div>
+                    <div class="text-xs sm:text-sm font-semibold text-gray-400">Page 1 Ranking Rate</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center border-t-2 border-t-brand-indigo/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 tracking-tight" id="stat-2">250+</div>
+                    <div class="text-xs sm:text-sm font-semibold text-gray-400">UK Clients Scaled</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center border-t-2 border-t-purple-500/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 tracking-tight" id="stat-3">5.2x</div>
+                    <div class="text-xs sm:text-sm font-semibold text-gray-400">Average Organic ROI</div>
+                </div>
+                <div class="glass-card p-6 rounded-2xl text-center border-t-2 border-t-emerald-500/60">
+                    <div class="text-3xl sm:text-4xl font-extrabold text-white mb-1 tracking-tight" id="stat-4">£14M+</div>
+                    <div class="text-xs sm:text-sm font-semibold text-gray-400">Client Revenue Generated</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="services" class="py-20 relative border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-cyan mb-3">Custom Built For UK Growth</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Full-Stack SEO Services Designed to Win</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service 1 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 relative group">
+                    <div class="w-14 h-14 rounded-xl bg-brand-indigo/10 border border-brand-indigo/30 flex items-center justify-center text-brand-cyan text-2xl mb-6 group-hover:bg-brand-indigo group-hover:text-white transition-all">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Technical & On-Page SEO</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Core Web Vitals optimization, schema markup, site architecture, and fast indexing tailored for UK search bots.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Page Speed & LCP Tuning</li>
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Structured Data & Snippets</li>
+                    </ul>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 relative group">
+                    <div class="w-14 h-14 rounded-xl bg-brand-cyan/10 border border-brand-cyan/30 flex items-center justify-center text-brand-cyan text-2xl mb-6 group-hover:bg-brand-cyan group-hover:text-brand-dark transition-all">
+                        <i class="fa-solid fa-map-location-dot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">UK Local SEO & GBP</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Dominate Google Map Packs in London, Manchester, Birmingham, Leeds, and regional target markets.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Google Business Profile Optimization</li>
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Geo-Targeted Local Citations</li>
+                    </ul>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 relative group">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 text-2xl mb-6 group-hover:bg-purple-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-link"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">UK Digital PR & Backlinks</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Earn high domain authority (.co.uk & .com) contextual links from legitimate UK press and niche blogs.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Zero Spam / 100% White-Hat</li>
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> UK Press Release Outreach</li>
+                    </ul>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-all duration-300 relative group">
+                    <div class="w-14 h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl mb-6 group-hover:bg-emerald-600 group-hover:text-white transition-all">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">E-Commerce SEO</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                        Shopify, WooCommerce, & Magento SEO strategies designed to turn high-intent organic traffic into sales.
+                    </p>
+                    <ul class="text-xs text-gray-300 space-y-2 mb-4">
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Product Page Keyword Mastery</li>
+                        <li><i class="fa-solid fa-check text-brand-cyan mr-1.5"></i> Faceted Navigation Fixes</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LIVE SEO AUDIT TOOL -->
+    <section id="audit" class="py-20 relative bg-brand-card/40 border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-6 sm:p-12 border border-brand-indigo/30 relative overflow-hidden">
+                <div class="absolute -right-20 -bottom-20 w-80 h-80 bg-brand-indigo/20 blur-3xl rounded-full pointer-events-none"></div>
+
+                <div class="max-w-3xl mx-auto text-center mb-10">
+                    <span class="px-3 py-1 rounded-full bg-brand-indigo/20 border border-brand-indigo/40 text-brand-cyan text-xs font-bold uppercase tracking-wider">Free Diagnostic Engine</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-3">Analyze Your Website's UK SEO Health Instantly</h2>
+                    <p class="text-gray-300 text-sm sm:text-base mt-2">Enter your URL below to generate a real-time site audit report covering speed, keywords, and technical issues.</p>
+                </div>
+
+                <!-- Input Form -->
+                <form id="auditForm" onsubmit="runAudit(event)" class="max-w-2xl mx-auto space-y-4">
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <div class="relative flex-grow">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-globe"></i>
+                            </div>
+                            <input type="text" id="auditUrl" required placeholder="example.co.uk or www.yourbusiness.com" 
+                                class="w-full pl-11 pr-4 py-3.5 bg-brand-dark/90 border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan transition-colors text-sm">
+                        </div>
+                        <div class="relative flex-grow">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-gray-400">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <input type="email" id="auditEmail" required placeholder="your.name@company.co.uk" 
+                                class="w-full pl-11 pr-4 py-3.5 bg-brand-dark/90 border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan transition-colors text-sm">
+                        </div>
+                    </div>
+                    <button type="submit" id="auditBtn" class="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-brand-indigo to-brand-cyan text-white shadow-lg hover:shadow-brand-indigo/30 transition-all flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>Generate Instant SEO Audit Report</span>
+                    </button>
+                </form>
+
+                <!-- Audit Progress State -->
+                <div id="auditProgress" class="hidden max-w-md mx-auto mt-8 text-center space-y-3">
+                    <div class="flex items-center justify-between text-xs font-semibold text-gray-400">
+                        <span id="auditStepText">Scanning domain headers...</span>
+                        <span id="auditPercentText">0%</span>
+                    </div>
+                    <div class="w-full bg-brand-dark rounded-full h-2.5 overflow-hidden border border-brand-border">
+                        <div id="auditProgressBar" class="bg-gradient-to-r from-brand-cyan to-brand-indigo h-2.5 rounded-full w-0 transition-all duration-300"></div>
+                    </div>
+                </div>
+
+                <!-- Audit Results Display -->
+                <div id="auditResults" class="hidden mt-12 pt-8 border-t border-brand-border/60">
+                    <div class="text-center mb-8">
+                        <h3 class="text-xl font-bold text-white">SEO Health Audit for <span id="resDomain" class="text-brand-cyan"></span></h3>
+                        <p class="text-xs text-gray-400">Analysis completed based on UK Google Search Guidelines</p>
+                    </div>
+
+                    <!-- Overall Score & Indicators Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                        <div class="bg-brand-dark/80 p-5 rounded-xl border border-brand-border text-center">
+                            <div class="text-xs font-semibold text-gray-400 mb-2">Overall SEO Score</div>
+                            <div class="text-4xl font-black text-amber-400" id="resScore">68 / 100</div>
+                            <span class="text-[10px] text-amber-400/90 font-medium bg-amber-400/10 px-2 py-0.5 rounded mt-2 inline-block">Needs Optimization</span>
+                        </div>
+                        <div class="bg-brand-dark/80 p-5 rounded-xl border border-brand-border text-center">
+                            <div class="text-xs font-semibold text-gray-400 mb-2">Desktop & Mobile Speed</div>
+                            <div class="text-4xl font-black text-rose-400" id="resSpeed">54%</div>
+                            <span class="text-[10px] text-rose-400/90 font-medium bg-rose-400/10 px-2 py-0.5 rounded mt-2 inline-block">Slow Loading LCP</span>
+                        </div>
+                        <div class="bg-brand-dark/80 p-5 rounded-xl border border-brand-border text-center">
+                            <div class="text-xs font-semibold text-gray-400 mb-2">UK Backlink Authority</div>
+                            <div class="text-4xl font-black text-emerald-400" id="resLinks">72 / 100</div>
+                            <span class="text-[10px] text-emerald-400/90 font-medium bg-emerald-400/10 px-2 py-0.5 rounded mt-2 inline-block">Moderate Authority</span>
+                        </div>
+                        <div class="bg-brand-dark/80 p-5 rounded-xl border border-brand-border text-center">
+                            <div class="text-xs font-semibold text-gray-400 mb-2">Local UK Schema & Tags</div>
+                            <div class="text-4xl font-black text-amber-400" id="resSchema">Failed</div>
+                            <span class="text-[10px] text-amber-400/90 font-medium bg-amber-400/10 px-2 py-0.5 rounded mt-2 inline-block">Missing Local Geo Tags</span>
+                        </div>
+                    </div>
+
+                    <!-- Diagnostic Breakdown -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm mb-8">
+                        <div class="bg-brand-dark/60 p-5 rounded-xl border border-brand-border space-y-3">
+                            <h4 class="font-bold text-white text-base flex items-center text-rose-400">
+                                <i class="fa-solid fa-circle-xmark mr-2"></i> High Priority Issues Detected
+                            </h4>
+                            <ul class="space-y-2 text-xs text-gray-300">
+                                <li class="flex items-start"><i class="fa-solid fa-chevron-right text-rose-400 mr-2 mt-0.5"></i> Missing H1 tag optimizations for target UK buyer keywords.</li>
+                                <li class="flex items-start"><i class="fa-solid fa-chevron-right text-rose-400 mr-2 mt-0.5"></i> Mobile Largest Contentful Paint (LCP) takes over 3.4 seconds.</li>
+                                <li class="flex items-start"><i class="fa-solid fa-chevron-right text-rose-400 mr-2 mt-0.5"></i> Canonical tags improperly configured on product/service URLs.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-brand-dark/60 p-5 rounded-xl border border-brand-border space-y-3">
+                            <h4 class="font-bold text-white text-base flex items-center text-emerald-400">
+                                <i class="fa-solid fa-circle-check mr-2"></i> Opportunity Roadmap
+                            </h4>
+                            <ul class="space-y-2 text-xs text-gray-300">
+                                <li class="flex items-start"><i class="fa-solid fa-chevron-right text-emerald-400 mr-2 mt-0.5"></i> Add UK Organization & Local Business Schema to boost Map Pack.</li>
+                                <li class="flex items-start"><i class="fa-solid fa-chevron-right text-emerald-400 mr-2 mt-0.5"></i> Target 15 low-competition high-intent keywords in your UK region.</li>
+                                <li class="flex items-start"><i class="fa-solid fa-chevron-right text-emerald-400 mr-2 mt-0.5"></i> Build 10 High DA .co.uk niche context backlink citations.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Report Download CTA -->
+                    <div class="text-center bg-brand-indigo/10 p-6 rounded-2xl border border-brand-indigo/30 flex flex-col sm:flex-row items-center justify-between gap-4">
+                        <div class="text-left">
+                            <div class="font-bold text-white text-base">Full Detailed PDF Audit sent to your email!</div>
+                            <div class="text-xs text-gray-400">Want our UK Senior Specialist to walk you through fixing these live?</div>
+                        </div>
+                        <a href="#contact" class="px-6 py-3 bg-brand-cyan text-brand-dark font-bold rounded-xl text-xs hover:bg-white transition-all whitespace-nowrap">
+                            Book Free Strategy Call <i class="fa-solid fa-phone-arrow-up-right ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDIES & RESULTS SHOWCASE -->
+    <section id="case-studies" class="py-20 relative border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-cyan mb-3">Proven Success Stories</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Real Growth for UK Niche Leaders</p>
+            </div>
+
+            <!-- Case Study Selector Tabs -->
+            <div class="flex justify-center mb-10 overflow-x-auto pb-2 space-x-3">
+                <button onclick="switchCaseStudy('chauffeur')" id="btn-chauffeur" class="cs-tab-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-brand-indigo text-white shadow-md">
+                    Chauffeur & Luxury Transport
+                </button>
+                <button onclick="switchCaseStudy('ecommerce')" id="btn-ecommerce" class="cs-tab-btn px-5 py-2.5 rounded-xl font-bold text-sm glass-card text-gray-400 hover:text-white">
+                    UK E-Commerce Brand
+                </button>
+                <button onclick="switchCaseStudy('dental')" id="btn-dental" class="cs-tab-btn px-5 py-2.5 rounded-xl font-bold text-sm glass-card text-gray-400 hover:text-white">
+                    Private London Clinic
+                </button>
+            </div>
+
+            <!-- Case Study Card & Graph -->
+            <div class="glass-card rounded-3xl p-6 sm:p-10 border border-brand-border/80">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <!-- Details Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div class="inline-flex items-center px-3 py-1 rounded-md bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-xs font-bold" id="csCategory">
+                            Executive Transport / London UK
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white tracking-tight" id="csTitle">
+                            Scaling London Executive Chauffeur to #1 for "Airport Transfer London"
+                        </h3>
+                        <p class="text-gray-300 text-sm leading-relaxed" id="csDesc">
+                            Through targeted local landing pages across Mayfair, Heathrow, and Gatwick, paired with technical schema and high-tier UK travel backlinks, organic lead inquiries jumped dramatically within 6 months.
+                        </p>
+                        
+                        <!-- Metric Badges -->
+                        <div class="grid grid-cols-3 gap-3 border-t border-brand-border/60 pt-4">
+                            <div>
+                                <div class="text-xs text-gray-400 font-semibold">Traffic Gain</div>
+                                <div class="text-xl font-extrabold text-emerald-400" id="csMetric1">+340%</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 font-semibold">Page 1 Keywords</div>
+                                <div class="text-xl font-extrabold text-brand-cyan" id="csMetric2">42 Keywords</div>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 font-semibold">Monthly Leads</div>
+                                <div class="text-xl font-extrabold text-brand-indigo" id="csMetric3">580+</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Chart Container -->
+                    <div class="lg:col-span-7 bg-brand-dark/90 p-4 sm:p-6 rounded-2xl border border-brand-border">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-xs font-bold text-gray-400">Organic Traffic Trajectory (6 Months)</span>
+                            <span class="text-[11px] text-emerald-400 font-semibold"><i class="fa-solid fa-arrow-trend-up"></i> Verified Analytics Data</span>
+                        </div>
+                        <div class="relative w-full h-64 sm:h-80">
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING CALCULATOR / UK TIER CARDS -->
+    <section id="pricing" class="py-20 relative bg-brand-card/30 border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-cyan mb-3">Transparent Investment</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Flexible Monthly UK SEO Packages</p>
+                <p class="text-gray-400 text-sm mt-2">All plans in British Pounds (£). No hidden setup fees or rigid long-term contracts.</p>
+            </div>
+
+            <!-- Pricing Tier Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Starter Tier -->
+                <div class="glass-card rounded-3xl p-8 border border-brand-border relative flex flex-col justify-between hover:border-brand-indigo/40 transition-all">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Local Growth</h3>
+                        <p class="text-xs text-gray-400 mb-6">Ideal for local service providers, tradesmen, and regional UK businesses.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-black text-white">£499</span>
+                            <span class="text-gray-400 text-sm font-medium ml-1">/ month</span>
+                        </div>
+                        <ul class="space-y-3 text-xs text-gray-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Target Up to 10 Target Keywords</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Full Technical & On-Page Audit</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Google Business Profile Optimization</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> 3 High DA UK Contextual Links/mo</li>
+                            <li class="flex items-center text-gray-500"><i class="fa-solid fa-circle-xmark mr-2.5 text-sm"></i> National PR Outreach</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3.5 rounded-xl font-bold bg-brand-dark border border-brand-border hover:border-brand-cyan text-white text-center transition-all text-sm">
+                        Get Started
+                    </a>
+                </div>
+
+                <!-- Growth Tier (Featured) -->
+                <div class="glass-card rounded-3xl p-8 border-2 border-brand-indigo relative flex flex-col justify-between shadow-xl shadow-brand-indigo/20 transform md:-translate-y-4">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-brand-indigo to-brand-cyan px-4 py-1 rounded-full text-[11px] font-black uppercase text-white tracking-wider">
+                        Most Popular for UK SMEs
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2 mt-2">UK Scale & Dominate</h3>
+                        <p class="text-xs text-gray-400 mb-6">Designed for expanding UK companies competing nationally or in competitive cities.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-black text-white">£999</span>
+                            <span class="text-gray-400 text-sm font-medium ml-1">/ month</span>
+                        </div>
+                        <ul class="space-y-3 text-xs text-gray-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Target Up to 25 Competitive Keywords</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Full Technical Fixes & Speed Tuning</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> 8 Authority UK Backlinks & PR Links/mo</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> 4 High-Converting SEO Blog Articles</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Dedicated UK Account Manager</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3.5 rounded-xl font-bold bg-gradient-to-r from-brand-indigo to-brand-cyan text-white text-center shadow-md hover:shadow-brand-indigo/40 transition-all text-sm">
+                        Claim Growth Package
+                    </a>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="glass-card rounded-3xl p-8 border border-brand-border relative flex flex-col justify-between hover:border-brand-indigo/40 transition-all">
+                    <div>
+                        <h3 class="text-xl font-bold text-white mb-2">Enterprise & E-Com</h3>
+                        <p class="text-xs text-gray-400 mb-6">Aggressive strategy for enterprise sites, multi-location brands, and e-commerce.</p>
+                        <div class="flex items-baseline mb-6">
+                            <span class="text-4xl font-black text-white">£1,899</span>
+                            <span class="text-gray-400 text-sm font-medium ml-1">/ month</span>
+                        </div>
+                        <ul class="space-y-3 text-xs text-gray-300 mb-8">
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Unlimited Keyword Tracking & Strategy</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Complete E-Commerce Faceted SEO</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> 18+ High DA UK Digital PR Backlinks</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Custom Content & Infographic Production</li>
+                            <li class="flex items-center"><i class="fa-solid fa-circle-check text-brand-cyan mr-2.5 text-sm"></i> Weekly Strategy & Analytics Calls</li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="w-full py-3.5 rounded-xl font-bold bg-brand-dark border border-brand-border hover:border-brand-cyan text-white text-center transition-all text-sm">
+                        Request Enterprise Consultation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Custom Budget Interactive Estimator Slider -->
+            <div class="max-w-3xl mx-auto glass-card p-6 sm:p-8 rounded-2xl border border-brand-border text-center">
+                <h4 class="text-lg font-bold text-white mb-2">Custom Package Estimator</h4>
+                <p class="text-xs text-gray-400 mb-6">Adjust your targeted keywords scale to view recommended monthly UK backlink & content budget.</p>
+
+                <div class="space-y-4">
+                    <div class="flex justify-between items-center text-sm font-semibold">
+                        <span class="text-gray-400">Target Keywords Scale:</span>
+                        <span id="sliderValue" class="text-brand-cyan font-bold text-lg">15 Keywords</span>
+                    </div>
+                    <input type="range" id="keywordSlider" min="5" max="60" value="15" step="5" 
+                        class="w-full h-2 bg-brand-dark rounded-lg appearance-none cursor-pointer accent-brand-cyan" 
+                        oninput="updateCustomEstimate(this.value)">
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-brand-border/60 text-center">
+                        <div>
+                            <span class="block text-[11px] text-gray-400 uppercase">Est. Monthly Growth</span>
+                            <span id="estTraffic" class="text-lg font-extrabold text-white">+1,200 Visitors</span>
+                        </div>
+                        <div>
+                            <span class="block text-[11px] text-gray-400 uppercase">UK PR Backlinks</span>
+                            <span id="estLinks" class="text-lg font-extrabold text-brand-cyan">5 Links/mo</span>
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <span class="block text-[11px] text-gray-400 uppercase">Est. Investment</span>
+                            <span id="estPrice" class="text-lg font-extrabold text-emerald-400">£699 / mo</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="reviews" class="py-20 relative border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <h2 class="text-xs uppercase tracking-widest font-extrabold text-brand-cyan mb-3">Client Feedback</h2>
+                <p class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Trusted by Business Owners Across the UK</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Review 1 -->
+                <div class="glass-card rounded-2xl p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            "RankRise completely transformed our local visibility in London & Surrey. We went from page 4 to spot #1 for airport transfers in less than 5 months. The ROI has been incredible."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-brand-border/60">
+                        <div class="w-10 h-10 rounded-full bg-brand-indigo/30 border border-brand-indigo flex items-center justify-center text-white font-bold text-sm">
+                            JH
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-white">James Harrison</div>
+                            <div class="text-xs text-gray-400">Director, Mayfair Chauffeurs London</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-card rounded-2xl p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            "Finding an SEO agency in the UK that delivers clear reporting without jargon is hard. RankRise scaled our Shopify organic revenue by 210% year-on-year. Couldn't ask for better partners."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-brand-border/60">
+                        <div class="w-10 h-10 rounded-full bg-brand-cyan/30 border border-brand-cyan flex items-center justify-center text-white font-bold text-sm">
+                            SP
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-white">Sarah Patel</div>
+                            <div class="text-xs text-gray-400">Founder, EcoHome Goods UK</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-card rounded-2xl p-8 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex text-amber-400 text-sm mb-4">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            "Their technical audit highlighted speed and schema errors that 3 other agencies missed. Within 90 days, our Manchester dental clinic was receiving 40+ extra private consult calls monthly."
+                        </p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-brand-border/60">
+                        <div class="w-10 h-10 rounded-full bg-purple-500/30 border border-purple-500 flex items-center justify-center text-white font-bold text-sm">
+                            DR
+                        </div>
+                        <div>
+                            <div class="text-sm font-bold text-white">Dr. Richard Vance</div>
+                            <div class="text-xs text-gray-400">Principal Dentist, Manchester Smile Studio</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT & AUDIT REQUEST FORM -->
+    <section id="contact" class="py-20 relative bg-brand-card/40 border-t border-brand-border/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Info -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="px-3 py-1 rounded-full bg-brand-cyan/10 border border-brand-cyan/30 text-brand-cyan text-xs font-bold uppercase tracking-wider">Let's Talk Growth</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                        Ready to Outrank Your UK Competitors?
+                    </h2>
+                    <p class="text-gray-300 text-sm leading-relaxed">
+                        Book a free 30-minute strategic SEO consultation with our UK specialists. We will manually inspect your domain and outline a tailored roadmap to page 1 rankings.
+                    </p>
+
+                    <div class="space-y-4 pt-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center text-brand-cyan">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 font-semibold">UK Headquarters</div>
+                                <div class="text-sm font-bold text-white">128 City Road, London, EC1V 2NX</div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center space-x-4">
+                            <div class="w-10 h-10 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center text-brand-cyan">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400 font-semibold">Email Enquiries</div>
+                                <div class="text-sm font-bold text-white">hasan.alvi.seo@gmail.com</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Contact Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-card rounded-3xl p-8 border border-brand-border shadow-2xl">
+                        <h3 class="text-xl font-bold text-white mb-6">Schedule Your Free UK SEO Strategy Call</h3>
+                        
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-400 mb-1.5">Your Full Name *</label>
+                                    <input type="text" required placeholder="e.g. David Miller" class="w-full px-4 py-3 bg-brand-dark/90 border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-400 mb-1.5">Business Email *</label>
+                                    <input type="email" required placeholder="david@company.co.uk" class="w-full px-4 py-3 bg-brand-dark/90 border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan text-sm">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-400 mb-1.5">Website URL *</label>
+                                    <input type="text" required placeholder="www.yourcompany.co.uk" class="w-full px-4 py-3 bg-brand-dark/90 border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan text-sm">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-400 mb-1.5">Monthly SEO Budget</label>
+                                    <select class="w-full px-4 py-3 bg-brand-dark/90 border border-brand-border rounded-xl text-white focus:outline-none focus:border-brand-cyan text-sm">
+                                        <option value="500">£500 - £1,000 / month</option>
+                                        <option value="1000">£1,000 - £2,500 / month</option>
+                                        <option value="2500">£2,500+ / month</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-400 mb-1.5">Primary Target UK Location & Goals</label>
+                                <textarea rows="4" placeholder="Tell us about your business goals (e.g. Target London area, improve website speed, boost online sales...)" class="w-full px-4 py-3 bg-brand-dark/90 border border-brand-border rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-brand-cyan text-sm"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 rounded-xl font-bold bg-gradient-to-r from-brand-indigo to-brand-cyan text-white shadow-lg hover:shadow-brand-indigo/30 transition-all text-sm">
+                                Submit Consultation Request
+                            </button>
+                        </form>
+
+                        <!-- Notification Container -->
+                        <div id="contactSuccess" class="hidden mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium text-center">
+                            <i class="fa-solid fa-circle-check text-base mb-1 block"></i>
+                            Thank you! Your strategy consultation request has been received. Our London SEO team will be in touch within 4 business hours.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-brand-border/60 bg-brand-dark text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-brand-indigo to-brand-cyan flex items-center justify-center text-white font-bold">
+                        <i class="fa-solid fa-chart-line text-sm"></i>
+                    </div>
+                    <span class="text-lg font-extrabold text-white">RankRise<span class="text-brand-cyan">.uk</span></span>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-6 text-gray-400 font-medium">
+                    <a href="#services" class="hover:text-white transition-colors">Services</a>
+                    <a href="#audit" class="hover:text-white transition-colors">Audit Engine</a>
+                    <a href="#case-studies" class="hover:text-white transition-colors">Case Studies</a>
+                    <a href="#pricing" class="hover:text-white transition-colors">UK Pricing</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+                </div>
+
+                <div>
+                    © 2026 RankRise Media Ltd (UK Registered). All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 1. Live SEO Audit Engine Simulator
+        function runAudit(event) {
+            event.preventDefault();
+            const urlInput = document.getElementById('auditUrl').value;
+            const btn = document.getElementById('auditBtn');
+            const progress = document.getElementById('auditProgress');
+            const results = document.getElementById('auditResults');
+            const progressBar = document.getElementById('auditProgressBar');
+            const stepText = document.getElementById('auditStepText');
+            const percentText = document.getElementById('auditPercentText');
+
+            btn.disabled = true;
+            btn.classList.add('opacity-50');
+            progress.classList.remove('hidden');
+            results.classList.add('hidden');
+
+            const steps = [
+                "Connecting to domain host...",
+                "Testing mobile responsiveness & LCP speed...",
+                "Checking UK H1/H2 meta tags...",
+                "Evaluating Schema & GBP local signals...",
+                "Finalizing SEO Diagnostic Score..."
+            ];
+
+            let step = 0;
+            let currentPercent = 0;
+
+            const interval = setInterval(() => {
+                currentPercent += 20;
+                progressBar.style.width = currentPercent + '%';
+                percentText.innerText = currentPercent + '%';
+                stepText.innerText = steps[step];
+                step++;
+
+                if (currentPercent >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        progress.classList.add('hidden');
+                        results.classList.remove('hidden');
+                        btn.disabled = false;
+                        btn.classList.remove('opacity-50');
+                        
+                        // Clean domain for display
+                        let cleanDomain = urlInput.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+                        document.getElementById('resDomain').innerText = cleanDomain || urlInput;
+                    }, 400);
+                }
+            }, 500);
+        }
+
+        // 2. Interactive Case Studies Chart
+        let currentChart = null;
+
+        const caseData = {
+            chauffeur: {
+                category: "Executive Transport / London UK",
+                title: "Scaling London Executive Chauffeur to #1 for 'Airport Transfer London'",
+                desc: "Through targeted local landing pages across Mayfair, Heathrow, and Gatwick, paired with technical schema and high-tier UK travel backlinks, organic lead inquiries jumped dramatically within 6 months.",
+                m1: "+340%",
+                m2: "42 Keywords",
+                m3: "580+/mo",
+                labels: ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5", "Month 6"],
+                traffic: [1200, 1800, 3100, 4900, 7200, 11400]
+            },
+            ecommerce: {
+                category: "E-Commerce / UK Nationwide",
+                title: "Boosting Organic Sales for Sustainable Fashion Retailer by 210%",
+                desc: "Fixed multi-faceted pagination filters, optimized product schemas, and secured high DA fashion magazine features. Resulted in continuous search revenue expansion.",
+                m1: "+210%",
+                m2: "85 Keywords",
+                m3: "£45k/mo",
+                labels: ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5", "Month 6"],
+                traffic: [5400, 6800, 9200, 14100, 18900, 24500]
+            },
+            dental: {
+                category: "Private Healthcare / Manchester",
+                title: "Dominating Local Map Pack for Manchester Cosmetic Dental Studio",
+                desc: "Optimized Google Business Profile, accrued 120+ authentic UK customer reviews, and created hyper-local treatment guides for Invisalign & Teeth Whitening.",
+                m1: "+450%",
+                m2: "28 Keywords",
+                m3: "95+ Call/mo",
+                labels: ["Month 1", "Month 2", "Month 3", "Month 4", "Month 5", "Month 6"],
+                traffic: [450, 750, 1400, 2300, 3600, 5100]
+            }
+        };
+
+        function renderChart(dataPoints, labels) {
+            const ctx = document.getElementById('trafficChart').getContext('2d');
+            if (currentChart) {
+                currentChart.destroy();
+            }
+
+            currentChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Monthly Organic Visitors',
+                        data: dataPoints,
+                        borderColor: '#38BDF8',
+                        borderWidth: 3,
+                        backgroundColor: (context) => {
+                            const bgCtx = context.chart.ctx;
+                            const gradient = bgCtx.createLinearGradient(0, 0, 0, 300);
+                            gradient.addColorStop(0, 'rgba(56, 189, 248, 0.4)');
+                            gradient.addColorStop(1, 'rgba(56, 189, 248, 0.0)');
+                            return gradient;
+                        },
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#6366F1',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94A3B8' }
+                        },
+                        y: {
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#94A3B8' }
+                        }
+                    }
+                }
+            });
+        }
+
+        function switchCaseStudy(key) {
+            const data = caseData[key];
+            document.getElementById('csCategory').innerText = data.category;
+            document.getElementById('csTitle').innerText = data.title;
+            document.getElementById('csDesc').innerText = data.desc;
+            document.getElementById('csMetric1').innerText = data.m1;
+            document.getElementById('csMetric2').innerText = data.m2;
+            document.getElementById('csMetric3').innerText = data.m3;
+
+            // Highlight Tab Buttons
+            document.querySelectorAll('.cs-tab-btn').forEach(btn => {
+                btn.className = 'cs-tab-btn px-5 py-2.5 rounded-xl font-bold text-sm glass-card text-gray-400 hover:text-white';
+            });
+            const activeBtn = document.getElementById(`btn-${key}`);
+            activeBtn.className = 'cs-tab-btn px-5 py-2.5 rounded-xl font-bold text-sm bg-brand-indigo text-white shadow-md';
+
+            renderChart(data.traffic, data.labels);
+        }
+
+        // 3. Pricing Estimator Slider Logic
+        function updateCustomEstimate(val) {
+            document.getElementById('sliderValue').innerText = val + ' Keywords';
+            
+            // Math estimations based on keywords
+            const baseTraffic = val * 95;
+            const baseLinks = Math.max(3, Math.round(val / 3));
+            const basePrice = Math.round(349 + (val * 25));
+
+            document.getElementById('estTraffic').innerText = '+' + baseTraffic.toLocaleString() + ' Visitors';
+            document.getElementById('estLinks').innerText = baseLinks + ' Links/mo';
+            document.getElementById('estPrice').innerText = '£' + basePrice.toLocaleString() + ' / mo';
+        }
+
+        // 4. Contact Form Handler
+        function handleContactSubmit(event) {
+            event.preventDefault();
+            const successBox = document.getElementById('contactSuccess');
+            const form = document.getElementById('contactForm');
+            
+            form.reset();
+            successBox.classList.remove('hidden');
+            setTimeout(() => {
+                successBox.classList.add('hidden');
+            }, 6000);
+        }
+
+        // Initialize default graph on page load
+        window.onload = function() {
+            switchCaseStudy('chauffeur');
+        };
+    </script>
+</body>
+</html>
+```
